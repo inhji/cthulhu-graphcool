@@ -1,0 +1,14 @@
+subscription {
+  Habit(filter: {
+    mutation_in: [UPDATED]
+    updatedFields_contains_some: ["toDelete"]
+  }) {
+    updatedFields
+    node {
+      id
+      logs {
+        id
+      }
+    }
+  }
+}

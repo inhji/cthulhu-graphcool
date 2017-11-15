@@ -1,0 +1,39 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+type User @model {
+  id: ID! @isUnique
+
+  name: String
+  email: String! @isUnique
+  password: String!
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  habits: [Habit!]! @relation(name: "UserHabits")
+}
+
+type Habit @model {
+  id: ID! @isUnique
+
+  name: String
+  days: Int! @defaultValue(value: 0)
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  author: User! @relation(name: "UserHabits")
+  logs: [HabitLog!]! @relation(name: "HabitHabitLogs")
+
+  toDelete: Boolean
+}
+
+type HabitLog @model {
+  id: ID! @isUnique
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  habit: Habit! @relation(name: "HabitHabitLogs")
+}
