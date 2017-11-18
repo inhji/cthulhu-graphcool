@@ -20,6 +20,9 @@ type Habit @model {
   name: String
   days: Int! @defaultValue(value: 0)
 
+  isGood: Boolean! @defaultValue(value: false) @migrationValue(value: false)
+  threshold: Int! @defaultValue(value: 0) @migrationValue(value: 0)
+
   createdAt: DateTime!
   updatedAt: DateTime!
 
